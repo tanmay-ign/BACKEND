@@ -6,7 +6,8 @@ import os
 
 load_dotenv()
 
-MONGO_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017/")
+MONGO_URI = os.getenv("MONGODB_URI") or os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+
 
 try:
     client = MongoClient(MONGO_URI)
@@ -87,4 +88,5 @@ def close_connection():
     if client is not None:
         client.close()
         print("MongoDB connection closed")
+
 
